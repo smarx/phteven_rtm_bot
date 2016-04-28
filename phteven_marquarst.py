@@ -16,7 +16,7 @@ outputs = []
 
 
 def say_smarx_and_reset():
-    to_say = Cacher.get_smarx_messages()[0]
+    to_say = Cacher.get_smarx_message()
     Cacher.reset_smarx_messages()
     return to_say
 

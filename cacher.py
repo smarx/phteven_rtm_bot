@@ -1,15 +1,7 @@
-import datetime
 import json
 import os
 
 from phteven_helper import SlackUsers
-
-'''
-This is a lazy way to save state. This should be made **way** better in the future.
-I just wanted to get this out the door and have a way to keep track of what we've seen.
-'''
-
-now = datetime.datetime.now()
 
 
 class Cacher(object):
@@ -52,6 +44,13 @@ class Cacher(object):
             state[str(SlackUsers.smarx)] = []
         cls.save_state(state)
         return cls.load_state()[str(SlackUsers.smarx)]
+
+    @classmethod
+    def get_smarx_message(cls):
+        messages = cls.get_smarx_messages()
+        if messages:
+            return messages[0]
+        return None
 
     @staticmethod
     def save_state(state):
