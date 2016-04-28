@@ -119,10 +119,10 @@ def process_message(data):
             lambda data: PhtevenRegex.myth_busted.search(data.text),
             lambda: random.choice(PhtevenPhrases.myth_busted_phrases)
         ),
-        # Wat dis is?
+        # What dis is?
         (
-            lambda data: PhtevenRegex.watdisis.search(data.text),
-            lambda: "YOU KNOW WAT DIS IS"
+            lambda data: PhtevenRegex.whatdisis.search(data.text),
+            lambda: "YOU KNOW WHAT DIS IS"
         ),
         # If something isn't real
         (

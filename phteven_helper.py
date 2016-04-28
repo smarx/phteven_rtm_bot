@@ -45,7 +45,7 @@ class PhtevenRegex(object):
     meow_now = re.compile(r'\bnow\b', re.IGNORECASE)
 
     only_hello = re.compile(r'[^A-Za-z0-9]')
-    watdisis = re.compile(r'wh?at.*dis.*is', re.IGNORECASE)
+    whatdisis = re.compile(r'what.*dis.*is', re.IGNORECASE)
     arentreal = re.compile(ur'aren(\'|\u2019)?t real', re.IGNORECASE)
     baylor = re.compile(r'(\w+(er|or))[%s]*$' % re.escape(string.punctuation), re.IGNORECASE)
 
