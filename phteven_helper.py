@@ -1,3 +1,7 @@
+import re
+import string
+
+
 class Data(object):
     def __init__(self, user='', subtype=None, text='', **kwargs):
         self.text = text
@@ -5,6 +9,45 @@ class Data(object):
         self.subtype = subtype
         for key, value in kwargs.iteritems():
             setattr(self, key, value)
+
+
+class PhtevenPhrases(object):
+    myth_busted_phrases = ['Mythterious',
+                           'Mythinterpreted',
+                           'You\'re mythtaken',
+                           'Yes. Myth confirmed',
+                           'Pindeed. Myth busted',
+                           "That's mythguided",
+                           "Hmm...you may have mythjudged that one",
+                           "That's being mythused"
+                           ]
+    giphy_phrases = ["hmmmm...that one kinda sucked",
+                     "/giphy NOICE", "NOICE",
+                     "wat",
+                     "uhhhh nope",
+                     "ya ya ya!"
+                     ]
+    phteven_phrases = [
+        "WAH?",
+        "mayhaps...",
+        "yeah...but can that be real if science isn't real?",
+        "yeah...but can that be real if ghosts aren't real?",
+        "I think I've hit the Phteven peak",
+        "hmmmMMMMmmmMmmmMMmmMmmmmm",
+        "Great success!",
+    ]
+
+
+class PhtevenRegex(object):
+    thats_something = re.compile(ur"^that(\u2019|\')?s (.*)$", re.IGNORECASE)
+    youre_something = re.compile(ur"^.*you(\u2019|\')?re? (\w+)$", re.IGNORECASE)
+    myth_busted = re.compile(r"myth (busted|confirmed)", re.IGNORECASE)
+    meow_now = re.compile(r'\bnow\b', re.IGNORECASE)
+
+    only_hello = re.compile(r'[^A-Za-z0-9]')
+    watdisis = re.compile(r'wh?at.*dis.*is', re.IGNORECASE)
+    arentreal = re.compile(ur'aren(\'|\u2019)?t real', re.IGNORECASE)
+    baylor = re.compile(r'(\w+(er|or))[%s]*$' % re.escape(string.punctuation), re.IGNORECASE)
 
 
 class PhtevenLogic(object):
@@ -73,6 +116,7 @@ class SlackUser(object):
     def at(self):
         return SlackUser("<@%s>" % self.user)
 
+    # This is just gross. Once I subclass string, get rid of this
     def is_in(self, s):
         return self.user in s
 
