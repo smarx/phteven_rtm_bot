@@ -90,11 +90,7 @@ class PhtevenProcessor(object):
     def __init__(self, rules):
         self.exclusive_rules = rules.exclusive
         self.inclusive_rules = rules.inclusive
-        self._complete = False
         self.outputs = []
-
-    def is_complete(self):
-        return self._is_complete
 
     def process(self):
         for rule in self.exclusive_rules:
