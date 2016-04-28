@@ -29,15 +29,15 @@ def process_message(data):
     print "process message", data
     data = Data(**data)
     # Be quiet for a while man....
-    if SlackUsers.phteven.at.is_in(data.text) and 'shhh' in data.text.lower():
+    if SlackUsers.phteven.at in data.text and 'shhh' in data.text.lower():
         print "Shhhhhhhhhh........"
         sleep(5 * 60)
         return
-    if str(SlackUsers.smarx) == data.user:
+    if SlackUsers.smarx == data.user:
         Cacher.add_smarx_message(data.text)
 
     # We don't care what Phteven Marquarst says
-    if data.user == u'U0Y8YJCBU':
+    if data.user == SlackUsers.phteven:
         return
 
     rules = PhtevenRules(data)
@@ -46,7 +46,7 @@ def process_message(data):
 
         # If @Phteven gets mentioned
         (
-            lambda data: SlackUsers.phteven.at.is_in(data.text),
+            lambda data: SlackUsers.phteven.at in data.text,
             lambda: "^ %s" % SlackUsers.stephen.at
         ),
         # NO EDITING
@@ -76,7 +76,7 @@ def process_message(data):
         ),
         # Zeebs trying to be funny
         (
-            lambda data: PhtevenRegex.thats_something.search(data.text) and data.user == u'U04JH6A3N',
+            lambda data: PhtevenRegex.thats_something.search(data.text) and data.user == SlackUsers.dxm,
             lambda: "Shut up, Zeebs"
         ),
         # Am i saying meow?

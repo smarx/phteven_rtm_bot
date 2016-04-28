@@ -107,8 +107,7 @@ class PhtevenProcessor(object):
         return self.outputs
 
 
-#subclass string not object
-class SlackUser(object):
+class SlackUser(str):
     def __init__(self, user):
         self.user = user
 
@@ -116,29 +115,12 @@ class SlackUser(object):
     def at(self):
         return SlackUser("<@%s>" % self.user)
 
-    # This is just gross. Once I subclass string, get rid of this
-    def is_in(self, s):
-        return self.user in s
 
-    def __repr__(self):
-        return self.user
-
-    def __str__(self):
-        return self.user
-
-    def __eq__(self, cmp):
-        return self.user == cmp
-
-    def __contains__(self, cmp):
-        return cmp in self.user
-
-
-class SlackUsers:
-    zeebz = SlackUser('U12EQ7BEZ')
-    dxm = SlackUser('U04JH6A3N')
-    phteven = SlackUser('U0Y8YJCBU')
-    smarx = SlackUser('U04TR0MSC')
-    stephen = SlackUser('U04FX9RJT')
-    raymundo = SlackUser('U12D20DCP')
-    ryan = SlackUser('U03TULSM8')
-
+class SlackUsers(object):
+    zeebz = SlackUser(u'U12EQ7BEZ')
+    dxm = SlackUser(u'U04JH6A3N')
+    phteven = SlackUser(u'U0Y8YJCBU')
+    smarx = SlackUser(u'U04TR0MSC')
+    stephen = SlackUser(u'U04FX9RJT')
+    raymundo = SlackUser(u'U12D20DCP')
+    ryan = SlackUser(u'U03TULSM8')
