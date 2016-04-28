@@ -137,6 +137,11 @@ def process_message(data):
     ])
 
     rules.add_many_inclusive([
+        # That's what she said
+        (
+            lambda data: "harder" in data.text,
+            lambda: "That's what she said"
+        ),
         # Say what smarx said...but a while ago
         (
             test_smarx,
